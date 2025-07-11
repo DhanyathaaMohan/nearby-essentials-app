@@ -1,3 +1,4 @@
+# nearby-essentials-app
 # MongoDB Mongoose Models
 
 This folder contains Mongoose schemas for the Local Finder project.
