@@ -1,11 +1,36 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  email: String,
-  password: String,
-  location: String,
-  bookmarks: [String],
-  searchHistory: [String],
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+
+  password: {
+    type: String,
+    required: true,
+  },
+
+  location: {
+    type: String,
+  },
+
+  favorites: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Place'  // referencing the Place schema
+  }],
+
+  searchHistory: [{
+    place: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Place',
+    },
+    searchedAt: {
+      type: Date,
+      default: Date.now
+    }
+  }]
 });
 
 module.exports = mongoose.model('User', userSchema);
